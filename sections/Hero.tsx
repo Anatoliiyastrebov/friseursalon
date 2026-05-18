@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/data/site";
+import { images } from "@/data/images";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -23,7 +24,7 @@ export function Hero() {
     >
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1521590832167-7bcbfda6381f?w=1920&h=1080&fit=crop&q=85"
+          src={images.hero}
           alt="Mira Beauty Lounge Salon Interior"
           fill
           priority

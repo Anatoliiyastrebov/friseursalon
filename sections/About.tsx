@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Sparkles, Heart, Award, Leaf } from "lucide-react";
+import { images } from "@/data/images";
 
 const highlights = [
   {
@@ -44,7 +45,7 @@ export function About() {
             <div className="relative">
               <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=1000&fit=crop&q=80"
+                  src={images.about}
                   alt="Stylistin bei der Arbeit im Salon"
                   fill
                   className="object-cover"

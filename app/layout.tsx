@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/layout/BackToTop";
 import { siteConfig } from "@/data/site";
+import { images } from "@/data/images";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1521590832167-7bcbfda6381f?w=1200&h=630&fit=crop&q=85",
+        url: images.og,
         width: 1200,
         height: 630,
         alt: "Mira Beauty Lounge Salon",
@@ -56,9 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} | Premium Friseur München`,
     description: siteConfig.description,
-    images: [
-      "https://images.unsplash.com/photo-1521590832167-7bcbfda6381f?w=1200&h=630&fit=crop&q=85",
-    ],
+    images: [images.og],
   },
   robots: {
     index: true,
@@ -71,8 +70,7 @@ const jsonLd = {
   "@type": "BeautySalon",
   name: siteConfig.name,
   description: siteConfig.description,
-  image:
-    "https://images.unsplash.com/photo-1521590832167-7bcbfda6381f?w=1200&h=630&fit=crop&q=85",
+  image: "https://mirabeautylounge.de/images/hero/salon-interior.jpg",
   telephone: siteConfig.phone,
   email: siteConfig.email,
   address: {
