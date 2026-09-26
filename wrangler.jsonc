@@ -1,0 +1,19 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "mira-beauty-lounge",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-09-24",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "mira-beauty-lounge",
+			"database_id": "4e24b36d-973e-4fa9-ae4d-28ecc553c868",
+			"migrations_dir": "migrations"
+		}
+	]
+}

@@ -29,13 +29,18 @@ export function Team() {
               <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
                 <Image
                   src={member.image}
-                  alt={member.name}
+                  alt={`Symbolbild: Stockfoto – nicht ${member.name}`}
                   fill
                   loading="lazy"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                {/* Stockfoto: die abgebildete Person arbeitet nicht in diesem
+                    fiktiven Salon. Hinweis muss sichtbar bleiben. */}
+                <span className="absolute bottom-3 left-3 rounded bg-black/70 px-2 py-0.5 text-[11px] font-medium text-white">
+                  Symbolbild
+                </span>
                 {member.social.instagram && (
                   <a
                     href={member.social.instagram}
@@ -60,6 +65,12 @@ export function Team() {
             </motion.article>
           ))}
         </div>
+
+        <p className="mt-8 text-center text-xs leading-relaxed text-warm-gray">
+          Hinweis: Diese Website ist ein Demo-Projekt. Salon, Namen und
+          Lebensläufe sind frei erfunden. Alle Personenfotos sind Stockfotos und
+          zeigen Menschen, die in keiner Verbindung zu diesem Salon stehen.
+        </p>
       </div>
     </section>
   );

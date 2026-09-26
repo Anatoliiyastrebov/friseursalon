@@ -52,6 +52,7 @@ export interface BookingFormData {
   email: string;
   service: string;
   date: string;
+  time: string;
   message: string;
 }
 
@@ -70,4 +71,18 @@ export interface SiteConfig {
   instagram: string;
   openingHours: { day: string; hours: string }[];
   mapEmbedUrl: string;
+}
+
+export interface AdminBooking {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  service: string;
+  date: string;
+  time: string;
+  message: string | null;
+  status: "neu" | "bestaetigt";
+  source: "online" | "telefon";
+  created_at: string;
 }

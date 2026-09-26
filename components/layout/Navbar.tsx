@@ -30,20 +30,34 @@ export function Navbar() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          scrolled ? "py-3" : "py-5"
+          scrolled ? "px-3 py-3 md:px-0" : "py-5"
         )}
       >
         <nav
           className={cn(
-            "mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 md:px-8",
-            scrolled && "glass rounded-full px-6 py-3 shadow-sm md:mx-8 lg:mx-auto"
+            "mx-auto flex max-w-7xl items-center justify-between transition-all duration-500",
+            scrolled
+              ? "glass rounded-full px-4 py-2.5 shadow-sm md:mx-8 md:px-6 md:py-3 lg:mx-auto"
+              : "px-5 md:px-8"
           )}
         >
           <Link href="/" className="group flex flex-col">
-            <span className="font-serif text-xl font-medium tracking-wide text-black md:text-2xl">
+            <span
+              className={cn(
+                "font-serif text-xl font-medium tracking-wide transition-colors duration-500 md:text-2xl",
+                scrolled ? "text-black" : "text-white"
+              )}
+            >
               Mira
             </span>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-warm-gray transition-colors group-hover:text-black">
+            <span
+              className={cn(
+                "text-[10px] uppercase tracking-[0.3em] transition-colors duration-500",
+                scrolled
+                  ? "text-warm-gray group-hover:text-black"
+                  : "text-white/75 group-hover:text-white"
+              )}
+            >
               Beauty Lounge
             </span>
           </Link>
@@ -53,7 +67,12 @@ export function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm text-warm-gray transition-colors hover:text-black"
+                  className={cn(
+                    "text-sm transition-colors duration-500",
+                    scrolled
+                      ? "text-warm-gray hover:text-black"
+                      : "text-white/85 hover:text-white"
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -70,7 +89,12 @@ export function Navbar() {
           <button
             type="button"
             aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-black/5 lg:hidden"
+            className={cn(
+              "flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-500 lg:hidden",
+              scrolled || mobileOpen
+                ? "bg-black/5 text-black"
+                : "bg-white/10 text-white"
+            )}
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

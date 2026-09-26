@@ -1,10 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/data/site";
 import { formatPhoneLink } from "@/lib/utils";
+
+const MAP_CONSENT_KEY = "mira_map_consent";
 
 const contactItems = [
   {
@@ -59,6 +63,32 @@ const contactItems = [
 ];
 
 export function Contact() {
+  const [mapConsent, setMapConsent] = useState(false);
+
+  useEffect(() => {
+    // In einem Mikrotask, damit das Lesen des einmaligen Nutzer-Opt-ins
+    // nicht als synchrones setState im Effekt selbst zählt (SSR-sicher,
+    // da localStorage erst nach dem Mount existiert).
+    queueMicrotask(() => {
+      try {
+        if (localStorage.getItem(MAP_CONSENT_KEY) === "granted") {
+          setMapConsent(true);
+        }
+      } catch {
+        // localStorage kann z. B. im privaten Modus blockiert sein.
+      }
+    });
+  }, []);
+
+  const acceptMap = () => {
+    setMapConsent(true);
+    try {
+      localStorage.setItem(MAP_CONSENT_KEY, "granted");
+    } catch {
+      // Zustimmung gilt dann nur für diesen Seitenaufruf.
+    }
+  };
+
   return (
     <section id="contact" className="section-padding bg-beige/40">
       <div className="container-luxury">
@@ -101,16 +131,29 @@ export function Contact() {
             viewport={{ once: true }}
             className="overflow-hidden rounded-3xl shadow-lg"
           >
-            <iframe
-              title="Mira Beauty Lounge Standort"
-              src={siteConfig.mapEmbedUrl}
-              width="100%"
-              height="100%"
-              className="min-h-[400px] w-full border-0 grayscale-[30%] transition-all duration-500 hover:grayscale-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+            {mapConsent ? (
+              <iframe
+                title="Mira Beauty Lounge Standort"
+                src={siteConfig.mapEmbedUrl}
+                width="100%"
+                height="100%"
+                className="min-h-[400px] w-full border-0 grayscale-[30%] transition-all duration-500 hover:grayscale-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            ) : (
+              <div className="flex min-h-[400px] w-full flex-col items-center justify-center gap-4 bg-beige/60 p-8 text-center">
+                <MapPin className="h-8 w-8 text-black" strokeWidth={1.5} />
+                <p className="max-w-xs text-sm text-warm-gray">
+                  Beim Laden der Karte wird eine Verbindung zu Google Maps
+                  hergestellt und es werden Cookies von Google gesetzt.
+                </p>
+                <Button onClick={acceptMap} size="sm">
+                  Karte laden
+                </Button>
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

@@ -57,7 +57,7 @@ export function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="glass absolute -bottom-6 -right-4 rounded-2xl p-6 shadow-xl md:-right-8"
+                className="glass absolute -bottom-6 -right-2 rounded-2xl p-6 shadow-xl md:-right-8"
               >
                 <p className="font-serif text-4xl font-light text-black">15+</p>
                 <p className="text-sm text-warm-gray">Jahre Erfahrung</p>

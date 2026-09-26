@@ -1,0 +1,10 @@
+# Kopieren nach ".dev.vars" (nicht committen) fuer lokale Entwicklung mit
+# `npm run dev` bzw. `wrangler dev`. In Produktion werden dieselben Werte
+# stattdessen per `wrangler secret put <NAME>` gesetzt (siehe README/Setup).
+
+# Passwort fuer den Zugang zu /admin.
+ADMIN_PASSWORD=
+
+# Zufaelliger, geheimer String zum Signieren des Admin-Session-Cookies
+# (z. B. mit `openssl rand -hex 32` erzeugen).
+ADMIN_SESSION_SECRET=

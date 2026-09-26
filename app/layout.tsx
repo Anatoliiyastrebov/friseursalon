@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { BackToTop } from "@/components/layout/BackToTop";
 import { siteConfig } from "@/data/site";
 import { images } from "@/data/images";
 import "./globals.css";
@@ -69,39 +66,6 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BeautySalon",
-  name: siteConfig.name,
-  description: siteConfig.description,
-  image: "https://mirabeautylounge.de/images/hero/salon-interior.jpg",
-  telephone: siteConfig.phone,
-  email: siteConfig.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: siteConfig.address.street,
-    addressLocality: siteConfig.address.city,
-    postalCode: siteConfig.address.zip,
-    addressCountry: "DE",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "19:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "09:00",
-      closes: "17:00",
-    },
-  ],
-  priceRange: "€€",
-  url: "https://mirabeautylounge.de",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -110,14 +74,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <BackToTop />
+        {children}
       </body>
     </html>
   );
